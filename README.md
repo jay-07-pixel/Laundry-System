@@ -300,23 +300,32 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 - **Debugging:** 404 on `/auth/login` (wrong process / port), **PostCSS** error from broken `App.css` block, CORS, **Mongo** connection issues.  
 - **Nice-to-haves:** CORS, **axios retries** + **`/health`** ping, EDD rule, 10-digit phone, garment **search**, README.  
 
-### Sample prompts (paraphrased)
+### Sample prompts (representative)
 
-- *“Laundry order API: CRUD-style orders, `orderId`, totals from garments, status enum, MongoDB.”*  
-- *“Add JWT: hardcoded user, protect dashboard, list/create orders, status update by `orderId`.”*  
-- *“React UI: login, dashboard, create order, orders list, status buttons, axios to API.”*  
-- *“Search by status and name/phone; later extend search to garment type.”*  
-- *“Global axios retries + short ‘waking up server’ hint for the hosted API.”*  
-- *“Estimated delivery: base 1 day + 1 day per 3 total garments.”*
+These are **paraphrased** from real sessions; wording was refined for clarity.
 
-### What AI got wrong (and what I fixed)
+- *“Design a REST API in Node.js and Express for laundry orders: unique business `orderId`, customer fields, line items (type, quantity, price), server-side totals, status enum, MongoDB with Mongoose validation.”*  
+- *“Add JWT authentication: login issues a token, verify middleware on protected routes, and configure the React client to send `Authorization: Bearer` for dashboard and order calls.”*  
+- *“Build a React app: sign-in, dashboard from aggregated stats, create-order form with a garment catalog and per-line totals, and an order list with status actions and debounced search.”*  
+- *“Support listing with optional `status` and a `search` query that matches customer name, phone, and garment type.”*  
+- *“Add a global axios retry policy for transient failures, with a short delay between attempts and a non-blocking health check so users don’t rely on manual refresh.”*  
+- *“Compute `estimatedDeliveryDate` from total garment count (baseline + extra days by quantity) and persist it when line items change.”*
 
-- **TypeScript in `.js` files** (e.g. `as const`) — removed for valid JavaScript.  
-- Inconsistent **env** names (`MONGODB_URI` vs `MONGO_URI`) — standardized.  
-- **Port drift** (5000 vs 5001) — aligned `.env` and docs.  
-- **Stale Node process** after route changes — restart server (operational, not a code bug).  
-- **Broken CSS** (orphan `}`) — fixed `.actions` / structure so CRA builds.  
-- **README / deployment** — iterated until links, security notes, and assignment sections were clear.
+### What AI got wrong
+
+- **TypeScript-style syntax in `.js` files** — e.g. constructs that only belong in TypeScript, not valid in a plain ESM JavaScript build.  
+- **Environment variable inconsistencies** — mixed names or docs that didn’t match `process.env` usage (e.g. database URI).  
+- **Port mismatches** — frontend `REACT_APP_API_URL` and backend `PORT` diverging during local dev.  
+- **Minor CSS / build errors** — invalid or orphaned rules that broke the Create React App / PostCSS pipeline.
+
+### Fixes applied
+
+- **JavaScript** — removed invalid syntax; kept a consistent **ES module** (`.js`) style end-to-end.  
+- **Configuration** — **standardized** env variable names, aligned **`.env.example`** with the code, and documented both API and UI env files in this README.  
+- **Local networking** — **resolved** port alignment so the browser always targets the same host/port as the running API.  
+- **UI build** — **fixed** stylesheet structure so the production build and dev server compile cleanly.
+
+*Other integration debugging (CORS, MongoDB connection, restarting the API after route changes) is summarized in [Where AI helped](#where-ai-helped).*
 
 ### Ownership (beyond copy-paste)
 
