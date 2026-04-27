@@ -1,0 +1,302 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  background: #fafafa;
+}
+
+.error {
+  color: #b00020;
+  background: #ffeaea;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.muted {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.search-row {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.search-row .muted {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dashboard-grid strong {
+  display: block;
+  font-size: 0.75rem;
+  color: #444;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label input {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.garment-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.garment-table-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1.4fr) 72px 88px minmax(160px, 1.1fr) auto;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.garment-table-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #ccc;
+  align-items: end;
+}
+
+.garment-table-header .garment-cell {
+  padding-bottom: 0;
+}
+
+.garment-cell-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.garment-cell-narrow input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.45rem;
+}
+
+.garment-cell-total {
+  min-width: 0;
+}
+
+.garment-line-total {
+  font-size: 0.85rem;
+  color: #222;
+  padding: 0.4rem 0.25rem;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.garment-cell-action {
+  padding-top: 0.15rem;
+}
+
+.garment-select {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.garment-other {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.35rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  border: 1px solid #333;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn.secondary {
+  background: #fff;
+  color: #333;
+}
+
+.btn.small {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.75rem;
+}
+
+.btn.active {
+  background: #1565c0;
+  border-color: #1565c0;
+  color: #fff;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-item {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.order-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+/* Always on its own row — avoids “Est. delivery” sitting inline when the first line is short */
+.order-head .order-est {
+  flex: 0 0 100%;
+  margin-top: 0.1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.mono {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #333;
+  background: #e0e0e0;
+}
+
+.badge--received {
+  color: #fff;
+  background: #757575;
+}
+
+.badge--processing {
+  color: #fff;
+  background: #1976d2;
+}
+
+.badge--ready {
+  color: #fff;
+  background: #ef6c00;
+}
+
+.badge--delivered {
+  color: #fff;
+  background: #2e7d32;
+}
+
+.garment-list {
+  margin: 0.35rem 0 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.status-actions span:first-child {
+  margin-right: 0.25rem;
+}

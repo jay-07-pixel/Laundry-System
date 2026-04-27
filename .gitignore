@@ -1,0 +1,8 @@
+node_modules/
+laundry-frontend/node_modules
+laundry-frontend/build
+.env
+laundry-frontend/.env
+laundry-frontend/.env.local
+*.log
+.DS_Store
