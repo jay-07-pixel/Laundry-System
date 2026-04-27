@@ -61,9 +61,7 @@ This README follows the assignment deliverables: **setup**, **features**, **AI u
 ### Live website (Vercel)
 
 - **URL:** [https://laundry-system-i4sd-5xfio60fg-jay-jobanputras-projects.vercel.app/](https://laundry-system-i4sd-5xfio60fg-jay-jobanputras-projects.vercel.app/)
-- **What to try:** Sign in → dashboard totals → create order (garments, line totals) → orders list (search, status buttons, estimated delivery) → refresh to see dashboard update.
-
-**Note:** Vercel **preview** deployments sometimes protect routes; if `manifest.json` returns **401** in the console, that is usually **Vercel Deployment Protection** on that URL, not the app’s JWT. Use the **production** deployment or adjust protection in [Vercel project settings](https://vercel.com/docs/deployment-protection) if you need a fully public static manifest.
+- **What to try:** Sign in → dashboard → create order → orders list (search, status, estimated delivery). Data updates after each action.
 
 ### Demo video
 
@@ -263,16 +261,16 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 | **Bonus:** Estimated delivery date | Yes |
 | **Bonus:** Deploy (e.g. Vercel + Render) | Yes (see [Quick links](#quick-links-submission)) |
 | CORS for API | Configured (all origins in dev/deploy-friendly way) |
-| Resilience | Axios **retries** (cold start) + optional **GET /health** wake on load for hosted API |
+| Resilience | Axios **retries** (up to 3, 2s apart) + optional **`/health`** ping on load |
 
-**UX details:** Garment **catalog** + “Other”, line totals on create, order list line subtotals (`price × qty`), status badges, debounced search, 10-digit phone input, “waking up server” message during API retries when the host is slow to respond.
+**UX details:** Garment **catalog** + “Other”, line totals on create, order list subtotals, status badges, debounced search, 10-digit phone, optional **“Waking up server, please wait…”** line while retries run.
 
 ---
 
 ## Bonus / stretch features
 
-- **Deployment:** Vercel (frontend) + hosted Node API (e.g. Render) — see [Quick links](#quick-links-submission).  
-- **Render cold start:** `fetch` to `/health` on app load (non-blocking) + **global axios retries** (up to 3, 2s delay) with user-facing **“Waking up server, please wait…”** during retries.  
+- **Deployment:** Vercel + hosted Node API — [Quick links](#quick-links-submission).  
+- **Reliability (hosted API):** non-blocking `GET /health` on first paint + **global axios retries** (3 attempts, 2s apart) and the short user hint above.  
 - **DB script:** `npm run clear-orders` to clear orders in development.
 
 ---
@@ -300,7 +298,7 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 - **Dashboard** aggregation with `$facet`.  
 - **React:** axios client, **debounced** search, garment **dropdown** + “Other”, line totals, status UI.  
 - **Debugging:** 404 on `/auth/login` (wrong process / port), **PostCSS** error from broken `App.css` block, CORS, **Mongo** connection issues.  
-- **Nice-to-haves:** CORS, **axios retry** for Render cold start, health **wake** request, EDD formula, 10-digit phone, search including **garment type**, README structure.
+- **Nice-to-haves:** CORS, **axios retries** + **`/health`** ping, EDD rule, 10-digit phone, garment **search**, README.  
 
 ### Sample prompts (paraphrased)
 
@@ -308,7 +306,7 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 - *“Add JWT: hardcoded user, protect dashboard, list/create orders, status update by `orderId`.”*  
 - *“React UI: login, dashboard, create order, orders list, status buttons, axios to API.”*  
 - *“Search by status and name/phone; later extend search to garment type.”*  
-- *“Global axios retry with 2s delay and a ‘waking up server’ message for Render.”*  
+- *“Global axios retries + short ‘waking up server’ hint for the hosted API.”*  
 - *“Estimated delivery: base 1 day + 1 day per 3 total garments.”*
 
 ### What AI got wrong (and what I fixed)
@@ -325,7 +323,7 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 - Chose **one** admin user and **one** order model (no over-engineering).  
 - **Single source of truth** for `totalAmount` in Mongoose.  
 - **Validation** (phone, garments) on both client and server.  
-- **Polished enough** for a demo: retries, EDD rule, subtotals, badges — without a huge design system.
+- **Polished enough** for a demo: retries, EDD, subtotals, badges — without a huge design system.  
 
 ---
 
@@ -338,7 +336,7 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 | **Search** | One `search` param (name / phone / garment) | Dedicated filters, text indexes |
 | **Tests** | None in repo | Jest (API) + React Testing Library |
 | **API docs** | This README | OpenAPI / Swagger |
-| **PWA** | Not a focus | Fix `manifest` 401 on protected Vercel previews or ship `manifest` from an unprotected path |
+| **PWA** | Not a focus | PWA / manifest polish |
 | **i18n** | English + “rs” display | Full localization |
 
 ---
@@ -349,9 +347,9 @@ Body: `{"email":"admin@gmail.com","password":"123456"}`
 |----------------------|---------------------------|
 | **Speed & execution** | Working end-to-end path: API + DB + UI + deploy links |
 | **AI leverage** | [AI usage report](#ai-usage-report) with tools, prompts, mistakes, fixes |
-| **Problem solving** | Port/CORS/Render cold start/validation/CSS/build issues addressed in code and docs |
+| **Problem solving** | Port/CORS, validation, integration, CSS build — handled in code and this README |
 | **Code quality (practical)** | Readable files, no unnecessary layers, clear `Order` model and routes |
-| **Ownership** | Extras: JWT, MongoDB, search, EDD, deploy, video, README, resilience (retries + wake) |
+| **Ownership** | Extras: JWT, MongoDB, search, EDD, deploy, video, README, **retries + `/health` ping** |
 
 **What we avoided (per brief):** huge UI frameworks, microservices, unnecessary abstractions.
 
