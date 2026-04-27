@@ -18,6 +18,9 @@ import "./App.css";
 
 const STATUSES = ["RECEIVED", "PROCESSING", "READY", "DELIVERED"];
 
+/** Render API — fire-and-forget ping on first paint to reduce cold-start on real requests */
+const RENDER_BACKEND_ORIGIN = "https://laundry-system-vftt.onrender.com";
+
 /** Keep only digits; max 10. If more than 10 (e.g. pasted +91…), use last 10. */
 function sanitizePhoneInput(value) {
   let d = String(value ?? "").replace(/\D/g, "");
@@ -93,6 +96,13 @@ function App() {
   const [loginEmail, setLoginEmail] = useState("admin@gmail.com");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginSubmitting, setLoginSubmitting] = useState(false);
+
+  // Wake hosted backend once (no UI impact; swallows network errors)
+  useEffect(() => {
+    fetch(`${RENDER_BACKEND_ORIGIN}/health`, { method: "GET" }).catch(
+      () => {}
+    );
+  }, []);
 
   useEffect(() => {
     const h = () => setAuthed(false);
