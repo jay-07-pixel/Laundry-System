@@ -1,5 +1,7 @@
 # Laundry Order Management System
 
+**Repository:** [github.com/jay-07-pixel/Laundry-System](https://github.com/jay-07-pixel/Laundry-System)
+
 A full-stack **dry cleaning / laundry order** app: **Node.js + Express + MongoDB** API, **React** UI, **JWT** auth, and a **dashboard** with MongoDB aggregations.
 
 ---
@@ -254,7 +256,7 @@ Use header on protected routes: `Authorization: Bearer <token>`
 
 ## AI usage report
 
-This project was built **iteratively** with help from **AI coding tools** (e.g. **Cursor** with an embedded model, and general guidance similar to **ChatGPT**-style assistants). The goal was speed, clarity, and learning—not paste-and-submit.
+This project was built **iteratively** with help from **AI coding tools** (e.g. **Cursor**,**Cursor**with an embedded model, and general guidance similar to **ChatGPT**-style assistants). The goal was speed, clarity, and learning—not paste-and-submit.
 
 ### How AI was used
 
