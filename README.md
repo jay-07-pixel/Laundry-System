@@ -370,4 +370,5 @@ These are **paraphrased** from real sessions; wording was refined for clarity.
 - **Live app:** [Vercel](https://laundry-system-i4sd-5xfio60fg-jay-jobanputras-projects.vercel.app/)  
 - **Demo video:** [Google Drive — LAUNDRY.mp4](https://drive.google.com/file/d/1bscDtx76npbX_naXF-tYKvcuOPAgHZJf/view?usp=sharing)  
 
-Use for **education / portfolio** unless you add your own license. Add your **name** and **course / submission ID** in the GitHub repository description when you submit.
+Jay Jobanputra
+Sanjivani Univeristy
